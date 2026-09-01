@@ -1,0 +1,4426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI CareerPath | Career Intelligence</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family:
+                Inter,
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(99,102,241,.15),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(168,85,247,.14),
+                    transparent 28%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f8faff,
+                    #eef2ff 50%,
+                    #f8fafc
+                );
+
+            color: #172033;
+
+            min-height: 100vh;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+
+        /* ==========================================
+           NAVBAR
+        ========================================== */
+
+        .navbar {
+            width: 100%;
+            padding: 20px 5%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(255,255,255,.75);
+
+            backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid rgba(226,232,240,.8);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+
+        .logo {
+            font-size: 23px;
+            font-weight: 800;
+            color: #4f46e5;
+        }
+
+
+        .logo span {
+            color: #0f172a;
+        }
+
+
+        .new-btn {
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+
+            padding: 11px 18px;
+
+            border-radius: 12px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 20px
+                rgba(79,70,229,.22);
+
+            transition: .2s;
+        }
+
+
+        .new-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(79,70,229,.30);
+        }
+
+
+        /* ==========================================
+           MAIN
+        ========================================== */
+
+        .container {
+    width: min(90%, 1250px);
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 45px 0 70px;
+    min-width: 0;
+}
+
+
+        .analysis-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 15px;
+
+            border-radius: 30px;
+
+            background: #eef2ff;
+            color: #4f46e5;
+
+            border:
+                1px solid #c7d2fe;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: .5px;
+        }
+
+
+        /* ==========================================
+           HERO
+        ========================================== */
+
+        .hero {
+            margin-top: 18px;
+            margin-bottom: 35px;
+        }
+
+
+        .hero h1 {
+            font-size:
+                clamp(
+                    34px,
+                    5vw,
+                    52px
+                );
+
+            color: #0f172a;
+
+            margin-bottom: 10px;
+        }
+
+
+        .hero h1 span {
+            background:
+                linear-gradient(
+                    90deg,
+                    #4f46e5,
+                    #9333ea
+                );
+
+            -webkit-background-clip:
+                text;
+
+            -webkit-text-fill-color:
+                transparent;
+        }
+
+
+        .hero p {
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 700px;
+        }
+
+
+        /* ==========================================
+           SUMMARY
+        ========================================== */
+
+        .summary-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .summary-card {
+            background:
+                rgba(255,255,255,.88);
+
+            border:
+                1px solid rgba(226,232,240,.9);
+
+            border-radius: 22px;
+
+            padding: 26px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(15,23,42,.07);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .summary-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(99,102,241,.08);
+
+            right: -30px;
+            top: -30px;
+        }
+
+
+        .summary-label {
+            color: #64748b;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+        }
+
+
+        .summary-value {
+            margin-top: 12px;
+
+            font-size: 30px;
+
+            font-weight: 850;
+
+            color: #0f172a;
+
+            overflow-wrap: anywhere;
+        }
+
+
+        .summary-description {
+            margin-top: 6px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+
+        .career-value {
+            color: #4f46e5;
+        }
+
+
+        /* ==========================================
+           SECTION
+        ========================================== */
+
+        .section {
+            margin-top: 25px;
+
+            width: 100%;
+
+            display: block;
+        }
+
+
+        .section-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 17px;
+        }
+
+
+        .section-title .icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 13px;
+
+            background: white;
+
+            box-shadow:
+                0 7px 20px
+                rgba(15,23,42,.08);
+
+            font-size: 20px;
+
+            flex-shrink: 0;
+        }
+
+
+        .section-title h2 {
+            font-size: 23px;
+
+            color: #0f172a;
+        }
+
+
+        .section-title p {
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-top: 3px;
+        }
+
+
+        /* ==========================================
+           CARD
+        ========================================== */
+
+        .card {
+            display: block;
+
+            width: 100%;
+
+            background:
+                rgba(255,255,255,.90);
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 22px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(15,23,42,.06);
+        }
+
+
+        /* ==========================================
+           SKILLS
+        ========================================== */
+
+        .skills-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(220px,1fr)
+                );
+
+            gap: 16px;
+        }
+
+
+        .skill-card {
+            padding: 20px;
+
+            border-radius: 17px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #e2e8f0;
+        }
+
+
+        .skill-top {
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            gap: 10px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .skill-name {
+            font-weight: 750;
+
+            text-transform:
+                capitalize;
+        }
+
+
+        .skill-score {
+            color: #4f46e5;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+
+        .progress {
+            width: 100%;
+
+            height: 9px;
+
+            background: #e2e8f0;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+        }
+
+
+        .progress-bar {
+            height: 100%;
+
+            display: block;
+
+            max-width: 100%;
+
+            min-width: 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #4f46e5,
+                    #8b5cf6
+                );
+
+            border-radius: 20px;
+
+            transition:
+                width .5s ease;
+        }
+
+
+        /* ==========================================
+           CAREER MATCH
+        ========================================== */
+
+        .career-list {
+            display: grid;
+
+            gap: 12px;
+        }
+
+
+        .career-item {
+            display: grid;
+
+            grid-template-columns:
+                220px
+                minmax(0, 1fr)
+                65px;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 15px 18px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 14px;
+        }
+
+
+        .career-name {
+            font-weight: 700;
+        }
+
+
+        .career-score {
+            text-align: right;
+
+            font-weight: 800;
+
+            color: #4f46e5;
+        }
+
+
+        .recommended {
+            border-color: #a5b4fc;
+
+            background: #eef2ff;
+        }
+
+
+        .recommended-badge {
+            display: inline-block;
+
+            margin-left: 7px;
+
+            font-size: 10px;
+
+            padding: 4px 7px;
+
+            border-radius: 20px;
+
+            background: #4f46e5;
+
+            color: white;
+
+            font-weight: 800;
+        }
+
+
+        /* ==========================================
+           SKILL GAP
+        ========================================== */
+
+        .gap-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px,1fr)
+                );
+
+            gap: 18px;
+        }
+
+
+        .gap-card {
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            background: #f8fafc;
+        }
+
+
+        .gap-header {
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .gap-name {
+            font-weight: 800;
+        }
+
+
+        .gap-status {
+            font-size: 11px;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            background: #fef3c7;
+
+            color: #92400e;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+
+        .levels {
+            display: grid;
+
+            grid-template-columns:
+                1fr 35px 1fr;
+
+            align-items: center;
+
+            text-align: center;
+        }
+
+
+        .level-box {
+            background: white;
+
+            border-radius: 13px;
+
+            padding: 13px;
+
+            border:
+                1px solid #e2e8f0;
+        }
+
+
+        .level-box small {
+            display: block;
+
+            color: #94a3b8;
+
+            margin-bottom: 5px;
+        }
+
+
+        .level-box strong {
+            font-size: 20px;
+        }
+
+
+        .arrow {
+            color: #6366f1;
+
+            font-size: 22px;
+        }
+
+
+        .gap-text {
+            margin-top: 14px;
+
+            font-size: 13px;
+
+            color: #64748b;
+
+            line-height: 1.6;
+        }
+
+
+        .no-gap {
+            text-align: center;
+
+            padding: 30px;
+
+            color: #64748b;
+        }
+
+
+        /* ==========================================
+           JOB READINESS
+        ========================================== */
+
+        .readiness-box {
+            display: grid;
+
+            grid-template-columns:
+                220px
+                minmax(0, 1fr);
+
+            gap: 30px;
+
+            align-items: center;
+        }
+
+
+        .readiness-score {
+            text-align: center;
+
+            padding: 25px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f5f3ff
+                );
+        }
+
+
+        .readiness-number {
+            font-size: 45px;
+
+            font-weight: 900;
+
+            color: #4f46e5;
+        }
+
+
+        .readiness-status {
+            margin-top: 5px;
+
+            font-weight: 800;
+
+            color: #475569;
+        }
+
+
+        .readiness-link {
+            display: inline-block;
+
+            margin-top: 17px;
+
+            padding: 10px 15px;
+
+            background: #4f46e5;
+
+            color: white;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            transition: .2s ease;
+        }
+
+
+        .readiness-link:hover {
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(79,70,229,.25);
+        }
+
+
+        .readiness-components {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap: 12px;
+        }
+
+
+        .component {
+            padding: 14px;
+
+            background: #f8fafc;
+
+            border-radius: 12px;
+
+            border:
+                1px solid #e2e8f0;
+        }
+
+
+        .component span {
+            display: block;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .component strong {
+            font-size: 16px;
+        }
+
+
+        /* =========================================================
+           CAREER PROFILE
+        ========================================================== */
+
+        .career-profile-card {
+            position: relative;
+
+            overflow: hidden;
+
+            width: 100%;
+
+            padding: 30px;
+
+            background:
+                radial-gradient(
+                    circle at 100% 0%,
+                    rgba(99,102,241,.10),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #f8faff
+                );
+
+            border:
+                1px solid #c7d2fe;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 18px 45px
+                rgba(79,70,229,.10);
+        }
+
+
+        .career-profile-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(124,58,237,.07);
+
+            right: -70px;
+            bottom: -70px;
+
+            pointer-events: none;
+        }
+
+
+        .profile-title {
+            position: relative;
+
+            z-index: 1;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            margin-bottom: 24px;
+        }
+
+
+        .profile-title-icon {
+            width: 52px;
+            height: 52px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f5f3ff
+                );
+
+            border:
+                1px solid #c7d2fe;
+
+            font-size: 23px;
+
+            flex-shrink: 0;
+        }
+
+
+        .profile-title h2 {
+            color: #0f172a;
+
+            font-size: 23px;
+        }
+
+
+        .profile-title p {
+            margin-top: 5px;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================================
+           PROFILE BUTTONS
+        ========================================================== */
+
+        .profile-buttons {
+            position: relative;
+
+            z-index: 1;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 15px;
+
+            width: 100%;
+        }
+
+
+        .profile-btn {
+            width: 100%;
+
+            border:
+                1px solid #e2e8f0;
+
+            background:
+                rgba(255,255,255,.95);
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition: .22s ease;
+
+            box-shadow:
+                0 7px 20px
+                rgba(15,23,42,.04);
+        }
+
+
+        .profile-btn:hover {
+            transform:
+                translateY(-4px);
+
+            border-color:
+                #a5b4fc;
+
+            box-shadow:
+                0 15px 32px
+                rgba(79,70,229,.13);
+        }
+
+
+        .profile-btn.active {
+            border-color:
+                #818cf8;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f5f3ff
+                );
+
+            box-shadow:
+                0 12px 30px
+                rgba(79,70,229,.12);
+        }
+
+
+        .profile-btn-icon {
+            width: 46px;
+            height: 46px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: #eef2ff;
+
+            font-size: 21px;
+        }
+
+
+        .profile-btn-content {
+            flex: 1;
+
+            min-width: 0;
+        }
+
+
+        .profile-btn-content strong {
+            display: block;
+
+            color: #0f172a;
+
+            font-size: 14px;
+        }
+
+
+        .profile-btn-content small {
+            display: block;
+
+            margin-top: 4px;
+
+            color: #64748b;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        .profile-btn-arrow {
+            color: #6366f1;
+
+            font-size: 20px;
+
+            font-weight: 900;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =========================================================
+           PROFILE INPUT BOXES
+        ========================================================== */
+
+        .profile-input-box {
+            position: relative;
+
+            z-index: 1;
+
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 22px;
+
+            background:
+                rgba(248,250,252,.96);
+
+            border:
+                1px solid #c7d2fe;
+
+            border-radius: 18px;
+
+            animation:
+                profileBoxOpen .25s ease;
+        }
+
+
+        .profile-input-box.active {
+            display: block;
+        }
+
+
+        @keyframes profileBoxOpen {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(-7px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        .profile-input-header {
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .profile-input-box h3 {
+            color: #312e81;
+
+            font-size: 17px;
+        }
+
+
+        .close-profile-box {
+            width: 32px;
+            height: 32px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #e0e7ff;
+
+            color: #4338ca;
+
+            cursor: pointer;
+
+            font-size: 17px;
+
+            font-weight: 800;
+
+            transition: .2s ease;
+        }
+
+
+        .close-profile-box:hover {
+            background: #c7d2fe;
+
+            transform:
+                rotate(90deg);
+        }
+
+
+        .profile-input-box p {
+            color: #64748b;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            margin-bottom: 13px;
+        }
+
+
+        .profile-input-box input,
+        .profile-input-box textarea {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 12px;
+
+            background: white;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            outline: none;
+
+            transition: .18s ease;
+        }
+
+
+        .profile-input-box input:focus,
+        .profile-input-box textarea:focus {
+            border-color:
+                #6366f1;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(99,102,241,.10);
+        }
+
+
+        .profile-input-box textarea {
+            min-height: 130px;
+
+            resize: vertical;
+        }
+
+
+        .profile-file-note {
+            margin-top: 7px;
+
+            color: #94a3b8;
+
+            font-size: 10px;
+        }
+
+
+        .profile-save-btn {
+            margin-top: 14px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            border: none;
+
+            padding: 11px 17px;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px
+                rgba(79,70,229,.20);
+
+            transition: .2s ease;
+        }
+
+
+        .profile-save-btn:hover {
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 11px 25px
+                rgba(79,70,229,.28);
+        }
+
+
+        .profile-success {
+            display: none;
+
+            margin-top: 10px;
+
+            padding: 9px 12px;
+
+            border-radius: 10px;
+
+            background: #ecfdf5;
+
+            border:
+                1px solid #a7f3d0;
+
+            color: #047857;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        .profile-success.show {
+            display: block;
+        }
+
+
+       /* ==========================================
+   PERSONALIZED ROADMAP
+========================================== */
+
+.roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+}
+
+
+.roadmap-item {
+    display: grid;
+    grid-template-columns: 55px minmax(0, 1fr);
+    column-gap: 18px;
+    width: 100%;
+    min-width: 0;
+    align-items: start;
+}
+
+
+.step-number {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #7c3aed
+        );
+
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 8px 20px
+        rgba(79,70,229,.25);
+
+    flex-shrink: 0;
+}
+
+
+.roadmap-card {
+    width: 100%;
+    min-width: 0;
+
+    background: white;
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 18px;
+
+    padding: 21px;
+
+    transition: .2s;
+
+    overflow: hidden;
+}
+
+
+.roadmap-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(15,23,42,.07);
+}
+
+
+.roadmap-card h3 {
+    margin-bottom: 8px;
+    color: #0f172a;
+}
+
+
+.roadmap-meta {
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 15px;
+
+    white-space: normal;
+}
+
+
+.roadmap-progress {
+    margin: 15px 0;
+    width: 100%;
+}
+
+
+.roadmap-progress-label {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    font-size: 11px;
+    color: #64748b;
+
+    margin-bottom: 6px;
+}
+
+
+.roadmap-progress .progress {
+    width: 100%;
+}
+
+
+.topic-heading {
+    margin-top: 17px;
+    margin-bottom: 9px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    color: #475569;
+}
+
+
+.topics {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    width: 100%;
+}
+
+
+.topic {
+    display: inline-block;
+
+    background: #eef2ff;
+    color: #4338ca;
+
+    padding: 7px 10px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+    font-weight: 650;
+
+    white-space: normal;
+}
+
+
+.roadmap-action {
+    margin-top: 16px;
+
+    padding: 12px 14px;
+
+    background: #f8fafc;
+
+    border-radius: 11px;
+
+    border:
+        1px solid #e2e8f0;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    width: 100%;
+}
+
+
+        .priority {
+            display: inline-block;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+
+        .priority-high {
+            background: #fee2e2;
+
+            color: #b91c1c;
+        }
+
+
+        .priority-medium {
+            background: #fef3c7;
+
+            color: #92400e;
+        }
+
+
+        .priority-low {
+            background: #dcfce7;
+
+            color: #166534;
+        }
+
+
+        /* ==========================================
+           AI ADVISOR
+        ========================================== */
+
+        .advisor {
+            width: 100%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #312e81,
+                    #4f46e5 50%,
+                    #7c3aed
+                );
+
+            color: white;
+
+            border-radius: 25px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(79,70,229,.22);
+        }
+
+
+        .advisor-header {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .advisor-icon {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,255,255,.15);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 23px;
+
+            flex-shrink: 0;
+        }
+
+
+        .advisor-header h2 {
+            font-size: 23px;
+        }
+
+
+        .advisor-header p {
+            opacity: .75;
+
+            font-size: 13px;
+        }
+
+
+        .advisor-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap: 15px;
+
+            width: 100%;
+        }
+
+
+        .advisor-card {
+            background:
+                rgba(255,255,255,.10);
+
+            border:
+                1px solid
+                rgba(255,255,255,.13);
+
+            border-radius: 17px;
+
+            padding: 20px;
+        }
+
+
+        .advisor-card h3 {
+            margin-bottom: 10px;
+
+            font-size: 16px;
+        }
+
+
+        .advisor-card p,
+        .advisor-card li {
+            color:
+                rgba(255,255,255,.82);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        .advisor-card ul,
+        .advisor-card ol {
+            padding-left: 20px;
+        }
+
+
+        /* ==========================================
+           PROJECTS
+        ========================================== */
+
+        .projects-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 18px;
+
+            width: 100%;
+        }
+
+
+        .project {
+            padding: 22px;
+
+            background: white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 19px;
+
+            transition: .2s;
+        }
+
+
+        .project:hover {
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 15px 35px
+                rgba(15,23,42,.09);
+        }
+
+
+        .project-number {
+            color: #6366f1;
+
+            font-weight: 900;
+
+            font-size: 12px;
+        }
+
+
+        .project h3 {
+            margin: 9px 0;
+        }
+
+
+        .project-tech {
+            color: #4f46e5;
+
+            font-size: 12px;
+
+            font-weight: 750;
+        }
+
+
+        .project p {
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            margin-top: 10px;
+        }
+
+
+        .project-skill {
+            margin-top: 13px;
+
+            display: inline-block;
+
+            padding: 6px 9px;
+
+            background: #eef2ff;
+
+            color: #4338ca;
+
+            border-radius: 8px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        /* ==========================================
+           ACTION PLAN
+        ========================================== */
+
+        .actions {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap: 14px;
+
+            width: 100%;
+        }
+
+
+        .action {
+            padding: 20px;
+
+            background: white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 17px;
+        }
+
+
+        .action-icon {
+            font-size: 22px;
+        }
+
+
+        .action h3 {
+            margin: 10px 0 6px;
+        }
+
+
+        .action p {
+            color: #64748b;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ==========================================
+           CTA
+        ========================================== */
+
+        .cta {
+            margin-top: 35px;
+
+            padding: 35px;
+
+            border-radius: 24px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f5f3ff
+                );
+
+            border:
+                1px solid #c7d2fe;
+        }
+
+
+        .cta h2 {
+            color: #0f172a;
+
+            margin-bottom: 8px;
+        }
+
+
+        .cta p {
+            color: #64748b;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .cta-btn {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            font-weight: 750;
+        }
+
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        footer {
+            text-align: center;
+
+            padding: 25px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media(max-width:1100px) {
+
+            .projects-grid {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+
+            .actions {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+        }
+
+
+        @media(max-width:900px) {
+
+            .summary-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .readiness-box {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .advisor-grid,
+            .actions {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+
+            .career-item {
+                grid-template-columns: 1fr;
+            }
+
+
+            .career-score {
+                text-align: left;
+            }
+
+
+            .profile-buttons {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media(max-width:600px) {
+
+            .container {
+                width: 94%;
+
+                padding-top: 30px;
+            }
+
+
+            .navbar {
+                padding: 16px 4%;
+            }
+
+
+            .logo {
+                font-size: 18px;
+            }
+
+
+            .new-btn {
+                padding: 9px 12px;
+
+                font-size: 12px;
+            }
+
+
+            .advisor-grid,
+            .actions,
+            .readiness-components {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .summary-card,
+            .card,
+            .advisor,
+            .career-profile-card {
+                padding: 20px;
+            }
+
+
+            .section-title h2 {
+                font-size: 19px;
+            }
+
+
+            .levels {
+                grid-template-columns:
+                    1fr 25px 1fr;
+            }
+
+
+            .step-number {
+                width: 40px;
+                height: 40px;
+            }
+
+
+            .roadmap-card {
+                padding: 17px;
+            }
+
+
+            .profile-title {
+                align-items:
+                    flex-start;
+            }
+
+
+            .profile-title h2 {
+                font-size: 19px;
+            }
+
+        }
+
+    
+
+/* ==========================================
+   FINAL HARD LAYOUT FIX
+   Keep every report section vertical
+   and prevent horizontal squeezing/overflow.
+========================================== */
+html,
+body {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    overflow-x: hidden !important;
+}
+
+main.container {
+    display: block !important;
+    width: min(90%, 1250px) !important;
+    max-width: 1250px !important;
+    min-width: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+main.container > .section,
+main.container > .cta {
+    display: block !important;
+    float: none !important;
+    clear: both !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.summary-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+.card,
+.roadmap,
+.roadmap-item,
+.roadmap-card,
+.skills-grid,
+.gap-grid,
+.career-list,
+.readiness-box,
+.career-profile-card,
+.advisor,
+.advisor-grid,
+.projects-grid,
+.actions {
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+.roadmap {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+.roadmap-item {
+    display: grid !important;
+    grid-template-columns: 55px minmax(0, 1fr) !important;
+    width: 100% !important;
+}
+
+.roadmap-card {
+    width: 100% !important;
+    overflow: hidden !important;
+}
+
+.skills-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+}
+
+.gap-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+}
+
+.projects-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.advisor-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.actions {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+@media (max-width: 1100px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+    .actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .summary-grid,
+    .skills-grid,
+    .gap-grid,
+    .projects-grid,
+    .advisor-grid,
+    .actions,
+    .profile-buttons {
+        grid-template-columns: 1fr !important;
+    }
+    .readiness-box {
+        grid-template-columns: 1fr !important;
+    }
+    .career-item {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 600px) {
+    main.container {
+        width: 94% !important;
+        max-width: 94% !important;
+    }
+    .roadmap-item {
+        grid-template-columns: 40px minmax(0, 1fr) !important;
+        column-gap: 10px !important;
+    }
+    .roadmap-card {
+        padding: 17px !important;
+    }
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         NAVBAR
+    ========================================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🎯 AI <span>CareerPath</span>
+        </div>
+
+
+        <a
+            href="{% url 'profile' %}"
+            class="new-btn"
+        >
+            ＋ New Assessment
+        </a>
+
+    </nav>
+
+
+    <main class="container">
+
+
+        <!-- ==========================================
+             ANALYSIS BADGE
+        ========================================== -->
+
+        <div class="analysis-badge">
+            ✨ AI ANALYSIS COMPLETE
+        </div>
+
+
+        <!-- ==========================================
+             HERO
+        ========================================== -->
+
+        <div class="hero">
+
+            <h1>
+
+                Hello,
+
+                <span>
+                    {{ assessment.student.name|default:"Student" }}
+                </span>
+
+                👋
+
+            </h1>
+
+
+            <p>
+
+                Your personalized career intelligence
+                report is ready.
+                Explore your strengths, skill gaps
+                and recommended career path.
+
+            </p>
+
+        </div>
+
+
+        <!-- ==========================================
+             SUMMARY
+        ========================================== -->
+
+        <div class="summary-grid">
+
+
+            <!-- OVERALL SCORE -->
+
+            <div class="summary-card">
+
+                <div class="summary-label">
+                    Overall Score
+                </div>
+
+                <div class="summary-value">
+
+                    {{ percentage|default:0|floatformat:1 }}%
+
+                </div>
+
+                <div class="summary-description">
+
+                    Based on your selected skills
+
+                </div>
+
+            </div>
+
+
+            <!-- RECOMMENDED CAREER -->
+
+            <div class="summary-card">
+
+                <div class="summary-label">
+                    Recommended Career
+                </div>
+
+                <div class="summary-value career-value">
+
+                    {{ ai_advice.career|default:"Not Available" }}
+
+                </div>
+
+                <div class="summary-description">
+
+                    ⭐ Your strongest career match
+
+                </div>
+
+            </div>
+
+
+            <!-- STRONGEST SKILL -->
+
+            <div class="summary-card">
+
+                <div class="summary-label">
+                    Strongest Skill
+                </div>
+
+                <div class="summary-value">
+
+                    {{ strongest_skill|default:"—" }}
+
+                </div>
+
+                <div class="summary-description">
+
+                    Your highest-scoring assessed skill
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- ✅ IMPORTANT: SUMMARY-GRID ENDS HERE -->
+
+
+        <!-- ==========================================
+             SKILLS
+        ========================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="icon">
+                    💻
+                </div>
+
+                <div>
+
+                    <h2>
+                        Your Skills
+                    </h2>
+
+                    <p>
+                        Your current assessed technical
+                        skill levels.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                {% if skills %}
+
+                    <div class="skills-grid">
+
+                        {% for skill, score in skills.items %}
+
+                            <div class="skill-card">
+
+                                <div class="skill-top">
+
+                                    <span class="skill-name">
+
+                                        {% if skill == "html_css" %}
+
+                                            HTML & CSS
+
+                                        {% else %}
+
+                                            {{ skill|title }}
+
+                                        {% endif %}
+
+                                    </span>
+
+
+                                    <span class="skill-score">
+
+                                        {{ score|floatformat:1 }}/100
+
+                                    </span>
+
+                                </div>
+
+
+                               <div class="progress">
+
+    <div
+        class="progress-bar"
+        style="width:{% if score > 100 %}100{% elif score < 0 %}0{% else %}{{ score|default:0|floatformat:1 }}{% endif %}%;"
+    ></div>
+
+</div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <p style="color:#64748b;">
+
+                        No assessed skills available.
+
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             CAREER MATCH
+        ========================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <h2>
+                        Career Match
+                    </h2>
+
+                    <p>
+                        How strongly your profile matches
+                        each career.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                {% if career_scores %}
+
+                    <div class="career-list">
+
+                        {% for career, score in career_scores.items %}
+
+                            <div
+                                class="
+                                    career-item
+                                    {% if career == ai_advice.career %}
+                                        recommended
+                                    {% endif %}
+                                "
+                            >
+
+                                <div class="career-name">
+
+                                    {{ career }}
+
+
+                                    {% if career == ai_advice.career %}
+
+                                        <span class="recommended-badge">
+
+                                            ⭐ RECOMMENDED
+
+                                        </span>
+
+                                    {% endif %}
+
+                                </div>
+
+
+                               <div class="progress">
+
+    <div
+        class="progress-bar"
+        style="width:{% if score > 100 %}100{% elif score < 0 %}0{% else %}{{ score|default:0|floatformat:1 }}{% endif %}%;"
+    ></div>
+
+</div>
+
+
+                                <div class="career-score">
+
+                                    {{ score|floatformat:1 }}%
+
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <p style="color:#64748b;">
+
+                        No career matches available.
+
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             SKILL GAP ANALYSIS
+        ========================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="icon">
+                    ⚠️
+                </div>
+
+                <div>
+
+                    <h2>
+                        Skill Gap Analysis
+                    </h2>
+
+                    <p>
+                        Understand what you need to improve.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                {% if skill_gaps %}
+
+                    <div class="gap-grid">
+
+                        {% for skill, gap in skill_gaps.items %}
+
+                            <div class="gap-card">
+
+                                <div class="gap-header">
+
+                                    <div class="gap-name">
+
+                                        {{ gap.skill }}
+
+                                    </div>
+
+                                    <div class="gap-status">
+
+                                        {% if gap.gap >= 30 %}
+
+                                            Major Gap
+
+                                        {% elif gap.gap > 0 %}
+
+                                            Needs Improvement
+
+                                        {% else %}
+
+                                            Target Reached
+
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="levels">
+
+                                    <div class="level-box">
+
+                                        <small>
+                                            Current
+                                        </small>
+
+                                        <strong>
+                                            {{ gap.current|default:0|floatformat:1 }}
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="arrow">
+                                        →
+                                    </div>
+
+
+                                    <div class="level-box">
+
+                                        <small>
+                                            Target
+                                        </small>
+
+                                        <strong>
+                                            {{ gap.required|default:0|floatformat:1 }}
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="gap-text">
+
+                                    {% if gap.gap > 0 %}
+
+                                        {{ gap.gap|floatformat:1 }}
+
+                                        points needed to reach
+                                        the target.
+
+                                    {% else %}
+
+                                        Target reached.
+                                        Keep practicing to maintain
+                                        this level.
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <div class="no-gap">
+
+                        <strong>
+                            🎉 No active skill gaps identified.
+                        </strong>
+
+                        <p style="margin-top:8px;">
+
+                            Your current assessed skills
+                            meet the available targets.
+
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+<!-- ==========================================
+     JOB READINESS
+========================================== -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <div class="icon">
+            💼
+        </div>
+
+        <div>
+
+            <h2>
+                Job Readiness
+            </h2>
+
+            <p>
+                Your placement preparation
+                and interview readiness.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="readiness-box">
+
+
+            <!-- ==========================================
+                 READINESS SCORE
+            =========================================== -->
+
+            <div class="readiness-score">
+
+                <div class="readiness-number">
+
+                    {{ job_readiness.score|default:0|floatformat:1 }}%
+
+                </div>
+
+
+                <div class="readiness-status">
+
+                    {{ job_readiness.status|default:"Not Assessed" }}
+
+                </div>
+
+
+                <!-- JOB READINESS BUTTON -->
+
+                <a
+                    href="{% url 'job_readiness' assessment.id %}"
+                    class="readiness-link"
+                >
+
+                    📝 Update Job Readiness
+
+                </a>
+
+
+
+            </div>
+
+
+            <!-- ==========================================
+                 COMPONENTS
+            =========================================== -->
+
+            <div>
+
+                <p
+                    style="
+                        color:#64748b;
+                        font-size:14px;
+                        line-height:1.7;
+                        margin-bottom:15px;
+                    "
+                >
+
+                    Your Job Readiness score is calculated
+                    from Coding Practice, Aptitude,
+                    CS Fundamentals and SQL / DBMS.
+
+                </p>
+
+
+                <div class="readiness-components">
+
+
+                    <!-- CODING -->
+
+                    <div class="component">
+
+                        <span>
+                            Coding Practice
+                        </span>
+
+                        <strong>
+
+                            {{ job_readiness.components.coding_practice|default:"—" }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- APTITUDE -->
+
+                    <div class="component">
+
+                        <span>
+                            Aptitude
+                        </span>
+
+                        <strong>
+
+                            {{ job_readiness.components.aptitude|default:"—" }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- CS FUNDAMENTALS -->
+
+                    <div class="component">
+
+                        <span>
+                            CS Fundamentals
+                        </span>
+
+                        <strong>
+
+                            {{ job_readiness.components.cs_fundamentals|default:"—" }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <!-- SQL / DBMS -->
+
+                    <div class="component">
+
+                        <span>
+                            SQL / DBMS
+                        </span>
+
+                        <strong>
+
+                            {{ job_readiness.components.sql_dbms|default:"—" }}
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     INTERVIEW PREPARATION RESULT
+====================================================== -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <div class="icon">
+            🎤
+        </div>
+
+        <div>
+
+            <h2>
+                Interview Preparation
+            </h2>
+
+            <p>
+                Your interview knowledge and preparation score.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        {% if interview_score is not None %}
+
+            <div class="readiness-box">
+
+                <div class="readiness-score">
+
+                    <div class="readiness-number">
+                        {{ interview_score|floatformat:1 }}%
+                    </div>
+
+                    <div class="readiness-status">
+
+                        {% if interview_score >= 80 %}
+                            Excellent
+                        {% elif interview_score >= 60 %}
+                            Good
+                        {% elif interview_score >= 40 %}
+                            Developing
+                        {% else %}
+                            Needs Improvement
+                        {% endif %}
+
+                    </div>
+
+                    <a
+                        href="{% url 'interview_preparation' assessment.id %}"
+                        class="readiness-link"
+                    >
+                        🔄 Retake Interview
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <p
+                        style="
+                            color:#64748b;
+                            font-size:14px;
+                            line-height:1.7;
+                            margin-bottom:15px;
+                        "
+                    >
+                        Your Interview Preparation score is based
+                        on the questions for your recommended career:
+                        <strong>
+                            {{ recommended_career }}
+                        </strong>.
+                    </p>
+
+
+                    <div class="readiness-components">
+
+                        <div class="component">
+
+                            <span>
+                                Interview Score
+                            </span>
+
+                            <strong>
+                                {{ interview_score|floatformat:1 }}%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="component">
+
+                            <span>
+                                Target
+                            </span>
+
+                            <strong>
+                                80%
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <div class="no-gap">
+
+                <strong>
+                    🎤 Interview Preparation Not Completed
+                </strong>
+
+                <p style="margin-top:8px;">
+                    Complete the interview test to see
+                    your score here.
+                </p>
+
+                <a
+                    href="{% url 'interview_preparation' assessment.id %}"
+                    class="readiness-link"
+                    style="margin-top:18px;"
+                >
+                    🎤 Start Interview Preparation
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+        <!-- =====================================================
+             CAREER PROFILE
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="icon">
+                    🚀
+                </div>
+
+                <div>
+
+                    <h2>
+                        Career Profile
+                    </h2>
+
+                    <p>
+                        Strengthen your professional profile
+                        with resume, projects and GitHub.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="career-profile-card">
+
+
+                <div class="profile-title">
+
+                    <span class="profile-title-icon">
+                        🌟
+                    </span>
+
+
+                    <div>
+
+                        <h2>
+                            Build Your Professional Profile
+                        </h2>
+
+                        <p>
+                            Add your career information separately.
+                            These details do not affect your Job Readiness score.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROFILE BUTTONS -->
+
+                <div class="profile-buttons">
+
+
+                    <!-- RESUME -->
+
+                    <button
+                        type="button"
+                        class="profile-btn"
+                        id="resume-button"
+                        onclick="toggleProfileBox('resume')"
+                    >
+
+                        <span class="profile-btn-icon">
+                            📄
+                        </span>
+
+
+                        <span class="profile-btn-content">
+
+                            <strong>
+                                Upload Resume
+                            </strong>
+
+                            <small>
+                                Add your latest PDF / DOC / DOCX resume
+                            </small>
+
+                        </span>
+
+
+                        <span class="profile-btn-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- PROJECTS -->
+
+                    <button
+                        type="button"
+                        class="profile-btn"
+                        id="projects-button"
+                        onclick="toggleProfileBox('projects')"
+                    >
+
+                        <span class="profile-btn-icon">
+                            🚀
+                        </span>
+
+
+                        <span class="profile-btn-content">
+
+                            <strong>
+                                Add Projects
+                            </strong>
+
+                            <small>
+                                Showcase your projects and technologies
+                            </small>
+
+                        </span>
+
+
+                        <span class="profile-btn-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <!-- GITHUB -->
+
+                    <button
+                        type="button"
+                        class="profile-btn"
+                        id="github-button"
+                        onclick="toggleProfileBox('github')"
+                    >
+
+                        <span class="profile-btn-icon">
+                            💻
+                        </span>
+
+
+                        <span class="profile-btn-content">
+
+                            <strong>
+                                GitHub / Portfolio
+                            </strong>
+
+                            <small>
+                                Add your professional profile link
+                            </small>
+
+                        </span>
+
+
+                        <span class="profile-btn-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- RESUME BOX -->
+
+                <div
+                    id="profile-resume-box"
+                    class="profile-input-box"
+                >
+
+                    <div class="profile-input-header">
+
+                        <h3>
+                            📄 Upload Your Resume
+                        </h3>
+
+
+                        <button
+                            type="button"
+                            class="close-profile-box"
+                            onclick="closeProfileInputs()"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <p>
+                        Upload your latest resume to keep
+                        your professional profile ready.
+                    </p>
+
+
+                    <input
+                        type="file"
+                        id="profile-resume-file"
+                        accept=".pdf,.doc,.docx"
+                    >
+
+
+                    <div class="profile-file-note">
+                        Supported formats: PDF, DOC, DOCX
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="profile-save-btn"
+                        onclick="saveCareerProfile('resume')"
+                    >
+                        💾 Save Resume
+                    </button>
+
+
+                    <div
+                        id="profile-resume-success"
+                        class="profile-success"
+                    >
+                        ✓ Resume selected successfully.
+                    </div>
+
+                </div>
+
+
+                <!-- PROJECTS BOX -->
+
+                <div
+                    id="profile-projects-box"
+                    class="profile-input-box"
+                >
+
+                    <div class="profile-input-header">
+
+                        <h3>
+                            🚀 Add Your Projects
+                        </h3>
+
+
+                        <button
+                            type="button"
+                            class="close-profile-box"
+                            onclick="closeProfileInputs()"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <p>
+                        Add your completed projects and
+                        the technologies you used.
+                    </p>
+
+
+                    <textarea
+                        id="profile-projects-input"
+                        placeholder="Example:
+
+AI CareerPath
+Django, Python, HTML, CSS
+AI-based career recommendation system
+
+Student Management System
+Flask, PostgreSQL
+Student CRUD application"
+                    ></textarea>
+
+
+                    <button
+                        type="button"
+                        class="profile-save-btn"
+                        onclick="saveCareerProfile('projects')"
+                    >
+                        💾 Save Projects
+                    </button>
+
+
+                    <div
+                        id="profile-projects-success"
+                        class="profile-success"
+                    >
+                        ✓ Project information saved on this page.
+                    </div>
+
+                </div>
+
+
+                <!-- GITHUB BOX -->
+
+                <div
+                    id="profile-github-box"
+                    class="profile-input-box"
+                >
+
+                    <div class="profile-input-header">
+
+                        <h3>
+                            💻 GitHub / Portfolio
+                        </h3>
+
+
+                        <button
+                            type="button"
+                            class="close-profile-box"
+                            onclick="closeProfileInputs()"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <p>
+                        Add your GitHub or portfolio profile URL.
+                    </p>
+
+
+                    <input
+                        type="url"
+                        id="profile-github-input"
+                        placeholder="https://github.com/yourusername"
+                    >
+
+
+                    <button
+                        type="button"
+                        class="profile-save-btn"
+                        onclick="saveCareerProfile('github')"
+                    >
+
+                        💾 Save Profile Link
+
+                    </button>
+
+
+                    <div
+                        id="profile-github-success"
+                        class="profile-success"
+                    >
+
+                        ✓ GitHub / Portfolio link saved on this page.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PERSONALIZED ROADMAP
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="icon">
+                    🗺️
+                </div>
+
+                <div>
+
+                    <h2>
+                        Personalized Learning Roadmap
+                    </h2>
+
+                    <p>
+                        Generated automatically from your
+                        actual skill gaps.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                {% if roadmap %}
+
+                    <div class="roadmap">
+
+                        {% for item in roadmap %}
+
+                            <div class="roadmap-item">
+
+
+                                <div class="step-number">
+
+                                    {{ forloop.counter }}
+
+                                </div>
+
+
+                                <div class="roadmap-card">
+
+
+                                    <div
+                                        style="
+                                            display:flex;
+                                            justify-content:space-between;
+                                            align-items:flex-start;
+                                            gap:15px;
+                                            flex-wrap:wrap;
+                                        "
+                                    >
+
+                                        <div>
+
+                                            <h3>
+
+                                                {{ item.display_name }}
+
+                                            </h3>
+
+
+                                            <div class="roadmap-meta">
+
+                                                Current:
+                                                {{ item.current|floatformat:1 }}/100
+
+                                                &nbsp; • &nbsp;
+
+                                                Target:
+                                                {{ item.required|floatformat:1 }}/100
+
+                                                &nbsp; • &nbsp;
+
+                                                Gap:
+                                                {{ item.gap|floatformat:1 }}
+
+                                            </div>
+
+                                        </div>
+
+
+                                        {% if item.priority == "HIGH" %}
+
+                                            <span
+                                                class="priority priority-high"
+                                            >
+                                                🔴 HIGH PRIORITY
+                                            </span>
+
+                                        {% elif item.priority == "MEDIUM" %}
+
+                                            <span
+                                                class="priority priority-medium"
+                                            >
+                                                🟡 MEDIUM PRIORITY
+                                            </span>
+
+                                        {% else %}
+
+                                            <span
+                                                class="priority priority-low"
+                                            >
+                                                🟢 LOW PRIORITY
+                                            </span>
+
+                                        {% endif %}
+
+                                    </div>
+
+
+                                    <div class="roadmap-progress">
+
+                                        <div class="roadmap-progress-label">
+
+                                            <span>
+                                                Current Level
+                                            </span>
+
+                                            <span>
+                                                Target:
+                                                {{ item.required|floatformat:1 }}
+                                            </span>
+
+                                        </div>
+
+
+                                        <div class="progress">
+
+    <div
+        class="progress-bar"
+        style="width:{% if item.current > 100 %}100{% elif item.current < 0 %}0{% else %}{{ item.current|default:0|floatformat:1 }}{% endif %}%;"
+    ></div>
+
+</div>
+
+
+                                    <div class="topic-heading">
+
+                                        📚 Topics to Learn
+
+                                    </div>
+
+
+                                    <div class="topics">
+
+                                        {% if item.topics %}
+
+                                            {% for topic in item.topics %}
+
+                                                <span class="topic">
+
+                                                    {{ forloop.counter }}.
+                                                    {{ topic }}
+
+                                                </span>
+
+                                            {% endfor %}
+
+                                        {% else %}
+
+                                            <span class="topic">
+                                                Fundamentals
+                                            </span>
+
+                                            <span class="topic">
+                                                Core Concepts
+                                            </span>
+
+                                            <span class="topic">
+                                                Practical Practice
+                                            </span>
+
+                                        {% endif %}
+
+                                    </div>
+
+
+                                    <div class="roadmap-action">
+
+                                        {% if item.priority == "HIGH" %}
+
+                                            <strong style="color:#b91c1c;">
+
+                                                🚨 Start Here:
+
+                                            </strong>
+
+                                            This is your biggest
+                                            skill gap.
+                                            Give this skill the
+                                            highest learning priority.
+
+                                        {% elif item.priority == "MEDIUM" %}
+
+                                            <strong style="color:#92400e;">
+
+                                                📌 Next Focus:
+
+                                            </strong>
+
+                                            Strengthen this skill
+                                            after addressing your
+                                            highest-priority gap.
+
+                                        {% else %}
+
+                                            <strong style="color:#166534;">
+
+                                                🌱 Maintain:
+
+                                            </strong>
+
+                                            A small improvement
+                                            here can help you
+                                            reach your target
+                                            career level.
+
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <div class="no-gap">
+
+                        <strong>
+
+                            🎉 No active skill gaps!
+
+                        </strong>
+
+
+                        <p style="margin-top:8px;">
+
+                            Your assessed skills currently
+                            meet their target levels.
+                            Keep practicing and reassess
+                            your profile regularly.
+
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             AI ADVISOR
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="advisor">
+
+
+                <div class="advisor-header">
+
+                    <div class="advisor-icon">
+                        🤖
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            AI Career Advisor
+                        </h2>
+
+                        <p>
+                            Personalized guidance generated
+                            from your assessment.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="advisor-grid">
+
+
+                    <div class="advisor-card">
+
+                        <h3>
+
+                            🎯 Why
+                            {{ ai_advice.career|default:"this career" }}?
+
+                        </h3>
+
+                        <p>
+
+                            {{ ai_advice.why_career|default:"No career explanation available yet." }}
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="advisor-card">
+
+                        <h3>
+
+                            💪 Your Strongest Skills
+
+                        </h3>
+
+
+                        {% if ai_advice.strongest_skills %}
+
+                            <ul>
+
+                                {% for skill in ai_advice.strongest_skills %}
+
+                                    <li>
+                                        {{ skill }}
+                                    </li>
+
+                                {% endfor %}
+
+                            </ul>
+
+                        {% else %}
+
+                            <p>
+                                No assessed skills available.
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="advisor-card">
+
+                        <h3>
+
+                            ⚠️ Biggest Skill Gaps
+
+                        </h3>
+
+
+                        {% if ai_advice.biggest_gaps %}
+
+                            <ul>
+
+                                {% for gap in ai_advice.biggest_gaps %}
+
+                                    <li>
+                                        {{ gap }}
+                                    </li>
+
+                                {% endfor %}
+
+                            </ul>
+
+                        {% else %}
+
+                            <p>
+                                No major skill gaps identified.
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="advisor-card">
+
+                        <h3>
+
+                            📚 What To Learn First
+
+                        </h3>
+
+
+                        {% if ai_advice.what_to_learn_first %}
+
+                            <ol>
+
+                                {% for item in ai_advice.what_to_learn_first %}
+
+                                    <li>
+                                        {{ item }}
+                                    </li>
+
+                                {% endfor %}
+
+                            </ol>
+
+                        {% else %}
+
+                            <p>
+                                No learning recommendations available.
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="advisor-card">
+
+                        <h3>
+
+                            💡 Career Direction
+
+                        </h3>
+
+
+                        <p>
+
+                            Based on your assessment,
+                            {{ ai_advice.career|default:"your current profile" }}
+                            is currently your strongest
+                            recommended direction.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="advisor-card">
+
+                        <h3>
+
+                            💼 Placement Action
+
+                        </h3>
+
+
+                        <p>
+
+                            {{ ai_advice.placement_action_plan.learn|default:"Continue improving your highest-priority skill gaps." }}
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PROJECTS
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="icon">
+                    🚀
+                </div>
+
+
+                <div>
+
+                    <h2>
+                        Recommended Projects
+                    </h2>
+
+                    <p>
+
+                        Build these projects to strengthen
+                        your profile.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {% if ai_advice.projects %}
+
+                <div class="projects-grid">
+
+                    {% for project in ai_advice.projects %}
+
+                        <div class="project">
+
+
+                            <div class="project-number">
+
+                                PROJECT
+                                {{ forloop.counter|stringformat:"02d" }}
+
+                            </div>
+
+
+                            <h3>
+
+                                {{ project.name|default:"Recommended Project" }}
+
+                            </h3>
+
+
+                            <div class="project-tech">
+
+                                {{ project.technology|default:"Technology not specified" }}
+
+                            </div>
+
+
+                            <p>
+
+                                {{ project.description|default:"Build this project to strengthen your practical development skills." }}
+
+                            </p>
+
+
+                            <p>
+
+                                <strong>
+                                    Why this project?
+                                </strong>
+
+                                {{ project.why|default:"This project can help demonstrate your skills in a practical way." }}
+
+                            </p>
+
+
+                            {% if project.skill %}
+
+                                <div class="project-skill">
+
+                                    {{ project.skill }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="card">
+
+                    <p style="color:#64748b;">
+
+                        No project recommendations
+                        available yet.
+
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- =====================================================
+             ACTION PLAN
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="icon">
+
+                    💼
+
+                </div>
+
+
+                <div>
+
+                    <h2>
+
+                        Placement Action Plan
+
+                    </h2>
+
+
+                    <p>
+
+                        Your next practical steps.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+
+
+                <div class="action">
+
+                    <div class="action-icon">
+
+                        📖
+
+                    </div>
+
+
+                    <h3>
+
+                        Learn
+
+                    </h3>
+
+
+                    <p>
+
+                        {{ ai_advice.placement_action_plan.learn|default:"Focus on your highest-priority skill gap." }}
+
+                    </p>
+
+                </div>
+
+
+                <div class="action">
+
+                    <div class="action-icon">
+
+                        💻
+
+                    </div>
+
+
+                    <h3>
+
+                        Practice
+
+                    </h3>
+
+
+                    <p>
+
+                        {{ ai_advice.placement_action_plan.practice|default:"Practice coding, aptitude and technical questions regularly." }}
+
+                    </p>
+
+                </div>
+
+
+                <div class="action">
+
+                    <div class="action-icon">
+
+                        🚀
+
+                    </div>
+
+
+                    <h3>
+
+                        Build
+
+                    </h3>
+
+
+                    <p>
+
+                        {{ ai_advice.placement_action_plan.build|default:"Build practical projects related to your target career." }}
+
+                    </p>
+
+                </div>
+
+
+                <div class="action">
+
+                    <div class="action-icon">
+
+                        🎤
+
+                    </div>
+
+
+                    <h3>
+
+                        Interview
+
+                    </h3>
+
+
+                    <p>
+
+                        {{ ai_advice.placement_action_plan.interview|default:"Prepare HR, technical and project-based interview questions." }}
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CTA
+        ====================================================== -->
+
+        <div class="cta">
+
+            <h2>
+
+                Ready to improve your career score?
+
+            </h2>
+
+
+            <p>
+
+                Work through your roadmap and
+                reassess your progress.
+
+            </p>
+
+
+            <a
+                href="{% url 'profile' %}"
+                class="cta-btn"
+            >
+
+                🔄 Take Another Assessment
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        🎯 AI CareerPath • Discover your potential 🚀
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+
+        /* =========================================================
+           CLOSE ALL PROFILE INPUTS
+        ========================================================== */
+
+        function closeProfileInputs() {
+
+            const boxes = [
+                "profile-resume-box",
+                "profile-projects-box",
+                "profile-github-box"
+            ];
+
+
+            const buttons = [
+                "resume-button",
+                "projects-button",
+                "github-button"
+            ];
+
+
+            boxes.forEach(function(id) {
+
+                const box =
+                    document.getElementById(id);
+
+                if (box) {
+
+                    box.classList.remove("active");
+
+                }
+
+            });
+
+
+            buttons.forEach(function(id) {
+
+                const button =
+                    document.getElementById(id);
+
+                if (button) {
+
+                    button.classList.remove("active");
+
+                }
+
+            });
+
+        }
+
+
+        /* =========================================================
+           OPEN PROFILE INPUT
+        ========================================================== */
+
+        function toggleProfileBox(type) {
+
+            const boxMap = {
+
+                resume:
+                    "profile-resume-box",
+
+                projects:
+                    "profile-projects-box",
+
+                github:
+                    "profile-github-box"
+
+            };
+
+
+            const buttonMap = {
+
+                resume:
+                    "resume-button",
+
+                projects:
+                    "projects-button",
+
+                github:
+                    "github-button"
+
+            };
+
+
+            const box =
+                document.getElementById(
+                    boxMap[type]
+                );
+
+
+            const button =
+                document.getElementById(
+                    buttonMap[type]
+                );
+
+
+            if (!box) {
+
+                return;
+
+            }
+
+
+            const alreadyOpen =
+                box.classList.contains("active");
+
+
+            closeProfileInputs();
+
+
+            if (!alreadyOpen) {
+
+                box.classList.add("active");
+
+
+                if (button) {
+
+                    button.classList.add("active");
+
+                }
+
+            }
+
+        }
+
+
+        /* =========================================================
+           SAVE CAREER PROFILE
+        ========================================================== */
+
+        function saveCareerProfile(type) {
+
+
+            /* =====================================================
+               RESUME
+            ===================================================== */
+
+            if (type === "resume") {
+
+                const input =
+                    document.getElementById(
+                        "profile-resume-file"
+                    );
+
+
+                const success =
+                    document.getElementById(
+                        "profile-resume-success"
+                    );
+
+
+                if (!input.files.length) {
+
+                    alert(
+                        "Please select your resume first."
+                    );
+
+                    return;
+
+                }
+
+
+                success.classList.add("show");
+
+            }
+
+
+            /* =====================================================
+               PROJECTS
+            ===================================================== */
+
+            if (type === "projects") {
+
+                const input =
+                    document.getElementById(
+                        "profile-projects-input"
+                    );
+
+
+                const success =
+                    document.getElementById(
+                        "profile-projects-success"
+                    );
+
+
+                if (!input.value.trim()) {
+
+                    alert(
+                        "Please enter at least one project."
+                    );
+
+                    return;
+
+                }
+
+
+                try {
+
+                    localStorage.setItem(
+                        "aiCareerPathProjects",
+                        input.value
+                    );
+
+                } catch (error) {
+
+                    console.log(error);
+
+                }
+
+
+                success.classList.add("show");
+
+            }
+
+
+            /* =====================================================
+               GITHUB
+            ===================================================== */
+
+            if (type === "github") {
+
+                const input =
+                    document.getElementById(
+                        "profile-github-input"
+                    );
+
+
+                const success =
+                    document.getElementById(
+                        "profile-github-success"
+                    );
+
+
+                if (!input.value.trim()) {
+
+                    alert(
+                        "Please enter your GitHub or portfolio URL."
+                    );
+
+                    return;
+
+                }
+
+
+                try {
+
+                    localStorage.setItem(
+                        "aiCareerPathGithub",
+                        input.value
+                    );
+
+                } catch (error) {
+
+                    console.log(error);
+
+                }
+
+
+                success.classList.add("show");
+
+            }
+
+        }
+
+
+        /* =========================================================
+           LOAD SAVED PROFILE DATA
+        ========================================================== */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                try {
+
+                    const savedProjects =
+                        localStorage.getItem(
+                            "aiCareerPathProjects"
+                        );
+
+
+                    const savedGithub =
+                        localStorage.getItem(
+                            "aiCareerPathGithub"
+                        );
+
+
+                    const projectsInput =
+                        document.getElementById(
+                            "profile-projects-input"
+                        );
+
+
+                    const githubInput =
+                        document.getElementById(
+                            "profile-github-input"
+                        );
+
+
+                    if (
+                        savedProjects &&
+                        projectsInput
+                    ) {
+
+                        projectsInput.value =
+                            savedProjects;
+
+                    }
+
+
+                    if (
+                        savedGithub &&
+                        githubInput
+                    ) {
+
+                        githubInput.value =
+                            savedGithub;
+
+                    }
+
+                } catch (error) {
+
+                    console.log(error);
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

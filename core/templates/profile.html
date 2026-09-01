@@ -1,0 +1,424 @@
+<!DOCTYPE html> 
+ 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>AI CareerPath | Create Profile</title> 
+ 
+<style> 
+    * { 
+        box-sizing: border-box; 
+        margin: 0; 
+        padding: 0; 
+    } 
+ 
+    body { 
+        font-family: Arial, Helvetica, sans-serif; 
+        min-height: 100vh; 
+        background: 
+            radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.18), transparent 30%), 
+            radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.16), transparent 30%), 
+            linear-gradient(135deg, #eef2ff, #f8fafc 50%, #e0f2fe); 
+        color: #172033; 
+        padding: 30px 20px; 
+    } 
+ 
+    .navbar { 
+        max-width: 1100px; 
+        margin: 0 auto 35px; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+    } 
+ 
+    .logo { 
+        font-size: 24px; 
+        font-weight: 800; 
+        color: #4f46e5; 
+    } 
+ 
+    .tag { 
+        font-size: 13px; 
+        color: #64748b; 
+        background: rgba(255, 255, 255, 0.7); 
+        padding: 8px 14px; 
+        border-radius: 30px; 
+        border: 1px solid #e2e8f0; 
+    } 
+ 
+    .main { 
+        max-width: 1100px; 
+        margin: auto; 
+        display: grid; 
+        grid-template-columns: 0.9fr 1.1fr; 
+        gap: 35px; 
+        align-items: center; 
+    } 
+ 
+    .intro { 
+        padding: 20px; 
+    } 
+ 
+    .badge { 
+        display: inline-block; 
+        background: #eef2ff; 
+        color: #4f46e5; 
+        border: 1px solid #c7d2fe; 
+        padding: 8px 14px; 
+        border-radius: 30px; 
+        font-size: 13px; 
+        font-weight: bold; 
+        margin-bottom: 20px; 
+    } 
+ 
+    .intro h1 { 
+        font-size: 48px; 
+        line-height: 1.1; 
+        margin-bottom: 18px; 
+        color: #0f172a; 
+    } 
+ 
+    .gradient-text { 
+        background: linear-gradient(90deg, #4f46e5, #9333ea); 
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent; 
+    } 
+ 
+    .intro p { 
+        font-size: 17px; 
+        line-height: 1.7; 
+        color: #64748b; 
+        max-width: 500px; 
+    } 
+ 
+    .features { 
+        margin-top: 28px; 
+        display: grid; 
+        gap: 12px; 
+    } 
+ 
+    .feature { 
+        display: flex; 
+        align-items: center; 
+        gap: 12px; 
+        color: #334155; 
+        font-size: 14px; 
+    } 
+ 
+    .feature-icon { 
+        width: 34px; 
+        height: 34px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        border-radius: 10px; 
+        background: white; 
+        box-shadow: 0 5px 15px rgba(15, 23, 42, 0.08); 
+    } 
+ 
+    .card { 
+        background: rgba(255, 255, 255, 0.92); 
+        backdrop-filter: blur(15px); 
+        border: 1px solid rgba(255, 255, 255, 0.8); 
+        padding: 38px; 
+        border-radius: 24px; 
+        box-shadow: 0 25px 60px rgba(15, 23, 42, 0.12); 
+    } 
+ 
+    .card-header { 
+        margin-bottom: 28px; 
+    } 
+ 
+    .card-header h2 { 
+        font-size: 27px; 
+        color: #0f172a; 
+        margin-bottom: 7px; 
+    } 
+ 
+    .card-header p { 
+        color: #64748b; 
+        font-size: 14px; 
+    } 
+ 
+    .field { 
+        margin-bottom: 19px; 
+    } 
+ 
+    label { 
+        display: block; 
+        font-size: 14px; 
+        font-weight: 700; 
+        color: #334155; 
+        margin-bottom: 8px; 
+    } 
+ 
+    input, 
+    select, 
+    textarea { 
+        width: 100%; 
+        padding: 13px 15px; 
+        border: 1px solid #dbe2ea; 
+        border-radius: 12px; 
+        font-size: 15px; 
+        color: #1e293b; 
+        background: #f8fafc; 
+        outline: none; 
+        transition: all 0.2s ease; 
+    } 
+ 
+    input:focus, 
+    select:focus, 
+    textarea:focus { 
+        background: white; 
+        border-color: #6366f1; 
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1); 
+    } 
+ 
+    .section-title { 
+        display: flex; 
+        align-items: center; 
+        gap: 8px; 
+        margin: 25px 0 12px; 
+        font-size: 16px; 
+        color: #1e293b; 
+    } 
+ 
+    #id_skills { 
+        list-style: none; 
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px; 
+    } 
+ 
+    #id_skills li { 
+        border: 1px solid #e2e8f0; 
+        background: #f8fafc; 
+        border-radius: 12px; 
+        padding: 12px; 
+        transition: all 0.2s ease; 
+    } 
+ 
+    #id_skills li:hover { 
+        background: #eef2ff; 
+        border-color: #a5b4fc; 
+        transform: translateY(-1px); 
+    } 
+ 
+    #id_skills label { 
+        display: flex; 
+        align-items: center; 
+        gap: 9px; 
+        margin: 0; 
+        cursor: pointer; 
+        font-weight: 600; 
+        font-size: 14px; 
+    } 
+ 
+    #id_skills input { 
+        width: auto; 
+        accent-color: #4f46e5; 
+    } 
+ 
+    .error { 
+        margin-top: 18px; 
+        padding: 13px; 
+        background: #fef2f2; 
+        border: 1px solid #fecaca; 
+        color: #b91c1c; 
+        border-radius: 12px; 
+        font-size: 13px; 
+    } 
+ 
+    button { 
+        width: 100%; 
+        border: none; 
+        margin-top: 24px; 
+        padding: 15px; 
+        border-radius: 13px; 
+        background: linear-gradient(90deg, #4f46e5, #7c3aed); 
+        color: white; 
+        font-size: 16px; 
+        font-weight: 700; 
+        cursor: pointer; 
+        box-shadow: 0 10px 25px rgba(79, 70, 229, 0.25); 
+        transition: all 0.2s ease; 
+    } 
+ 
+    button:hover { 
+        transform: translateY(-2px); 
+        box-shadow: 0 14px 30px rgba(79, 70, 229, 0.32); 
+    } 
+ 
+    .footer { 
+        text-align: center; 
+        margin-top: 35px; 
+        color: #94a3b8; 
+        font-size: 12px; 
+    } 
+ 
+    @media (max-width: 850px) { 
+        .main { 
+            grid-template-columns: 1fr; 
+        } 
+ 
+        .intro { 
+            text-align: center; 
+        } 
+ 
+        .intro p { 
+            margin: auto; 
+        } 
+ 
+        .features { 
+            text-align: left; 
+            max-width: 400px; 
+            margin-left: auto; 
+            margin-right: auto; 
+        } 
+ 
+        .intro h1 { 
+            font-size: 38px; 
+        } 
+    } 
+ 
+    @media (max-width: 550px) { 
+        body { 
+            padding: 20px 14px; 
+        } 
+ 
+        .navbar { 
+            margin-bottom: 20px; 
+        } 
+ 
+        .tag { 
+            display: none; 
+        } 
+ 
+        .card { 
+            padding: 25px 20px; 
+        } 
+ 
+        #id_skills { 
+            grid-template-columns: 1fr; 
+        } 
+ 
+        .intro h1 { 
+            font-size: 34px; 
+        } 
+    } 
+</style> 
+ 
+</head> 
+ 
+<body> 
+ 
+<nav class="navbar"> 
+    <div class="logo">🎯 AI CareerPath</div> 
+    <div class="tag">AI-Powered Career Guidance</div> 
+</nav> 
+ 
+<main class="main"> 
+ 
+    <section class="intro"> 
+ 
+        <div class="badge"> 
+            ✨ Discover Your Career Path 
+        </div> 
+ 
+        <h1> 
+            Build your 
+            <span class="gradient-text">future</span> 
+            with AI. 
+        </h1> 
+ 
+        <p> 
+            Tell us about your skills and interests. 
+            AI CareerPath will analyze your profile and 
+            create a personalized career direction for you. 
+        </p> 
+ 
+        <div class="features"> 
+ 
+            <div class="feature"> 
+                <div class="feature-icon">🧠</div> 
+                <span>AI-powered career recommendation</span> 
+            </div> 
+ 
+            <div class="feature"> 
+                <div class="feature-icon">📊</div> 
+                <span>Personalized skill gap analysis</span> 
+            </div> 
+ 
+            <div class="feature"> 
+                <div class="feature-icon">🚀</div> 
+                <span>Job-focused learning roadmap</span> 
+            </div> 
+ 
+        </div> 
+ 
+    </section> 
+ 
+    <section class="card"> 
+ 
+        <div class="card-header"> 
+            <h2>Create Your Student Profile</h2> 
+ 
+            <p> 
+                Start your personalized career analysis. 
+            </p> 
+        </div> 
+ 
+        <form method="POST"> 
+ 
+            {% csrf_token %} 
+ 
+            <div class="field"> 
+                {{ form.name.label_tag }} 
+                {{ form.name }} 
+            </div> 
+ 
+            <div class="field"> 
+                {{ form.email.label_tag }} 
+                {{ form.email }} 
+            </div> 
+ 
+            <div class="field"> 
+                {{ form.college.label_tag }} 
+                {{ form.college }} 
+            </div> 
+ 
+            <h3 class="section-title"> 
+                💻 Select Your Skills 
+            </h3> 
+ 
+            {{ form.skills }} 
+ 
+            <div class="field" style="margin-top: 20px;"> 
+                {{ form.career_interest.label_tag }} 
+                {{ form.career_interest }} 
+            </div> 
+ 
+            {% if form.errors %} 
+                <div class="error"> 
+                    {{ form.errors }} 
+                </div> 
+            {% endif %} 
+ 
+            <button type="submit"> 
+                🚀 Create My Profile 
+            </button> 
+ 
+        </form> 
+ 
+    </section> 
+ 
+</main> 
+ 
+<div class="footer"> 
+    AI CareerPath • Discover your potential 🚀 
+</div> 
+ 
+</body> 
+ 
+</html>

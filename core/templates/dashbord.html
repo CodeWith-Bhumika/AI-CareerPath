@@ -1,0 +1,2476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AI CareerPath | Dashboard</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+
+            font-family:
+                Inter,
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: #172033;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(99,102,241,.15),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(168,85,247,.14),
+                    transparent 28%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f8faff,
+                    #eef2ff 50%,
+                    #f8fafc
+                );
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ==========================================
+           NAVBAR
+        ========================================== */
+
+        .navbar {
+
+            width: 100%;
+
+            padding: 18px 5%;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            background:
+                rgba(255,255,255,.82);
+
+            backdrop-filter:
+                blur(18px);
+
+            border-bottom:
+                1px solid #e2e8f0;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+        .logo {
+
+            font-size: 23px;
+
+            font-weight: 900;
+
+            color: #4f46e5;
+        }
+
+        .logo span {
+
+            color: #0f172a;
+        }
+
+        .nav-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .nav-btn {
+
+            display: inline-block;
+
+            padding: 10px 15px;
+
+            border-radius: 11px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+        }
+
+        /* ==========================================
+           MAIN
+        ========================================== */
+
+        .container {
+
+            width: min(90%, 1250px);
+
+            margin: 0 auto;
+
+            padding:
+                40px 0 70px;
+
+            min-width: 0;
+        }
+
+        /* ==========================================
+           HERO
+        ========================================== */
+
+        .hero {
+
+            margin-bottom: 30px;
+        }
+
+        .badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 8px 13px;
+
+            border-radius: 30px;
+
+            background:
+                #eef2ff;
+
+            border:
+                1px solid #c7d2fe;
+
+            color:
+                #4f46e5;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: .4px;
+
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+
+            font-size:
+                clamp(
+                    32px,
+                    5vw,
+                    48px
+                );
+
+            color:
+                #0f172a;
+
+            margin-bottom: 9px;
+        }
+
+        .hero h1 span {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #4f46e5,
+                    #9333ea
+                );
+
+            -webkit-background-clip:
+                text;
+
+            -webkit-text-fill-color:
+                transparent;
+        }
+
+        .hero p {
+
+            color:
+                #64748b;
+
+            font-size:
+                15px;
+
+            line-height:
+                1.7;
+
+            max-width:
+                760px;
+        }
+
+        /* ==========================================
+           STAT GRID
+        ========================================== */
+
+        .stats-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    minmax(0,1fr)
+                );
+
+            gap:
+                16px;
+
+            margin-bottom:
+                25px;
+        }
+
+        .stat-card {
+
+            background:
+                rgba(255,255,255,.92);
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius:
+                19px;
+
+            padding:
+                20px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(15,23,42,.06);
+
+            min-width:
+                0;
+        }
+
+        .stat-label {
+
+            color:
+                #64748b;
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                .5px;
+        }
+
+        .stat-value {
+
+            margin-top:
+                10px;
+
+            color:
+                #0f172a;
+
+            font-size:
+                27px;
+
+            font-weight:
+                900;
+
+            overflow-wrap:
+                anywhere;
+        }
+
+        .stat-value.purple {
+
+            color:
+                #4f46e5;
+        }
+
+        .stat-value.green {
+
+            color:
+                #059669;
+        }
+
+        .stat-description {
+
+            margin-top:
+                5px;
+
+            color:
+                #94a3b8;
+
+            font-size:
+                11px;
+        }
+
+        /* ==========================================
+           SECTION
+        ========================================== */
+
+        .section {
+
+            width:
+                100%;
+
+            margin-top:
+                25px;
+
+            min-width:
+                0;
+        }
+
+        .section-title {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            margin-bottom:
+                15px;
+        }
+
+        .section-icon {
+
+            width:
+                41px;
+
+            height:
+                41px;
+
+            border-radius:
+                13px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                white;
+
+            box-shadow:
+                0 7px 18px
+                rgba(15,23,42,.07);
+
+            font-size:
+                19px;
+
+            flex-shrink:
+                0;
+        }
+
+        .section-title h2 {
+
+            color:
+                #0f172a;
+
+            font-size:
+                22px;
+        }
+
+        .section-title p {
+
+            color:
+                #64748b;
+
+            font-size:
+                12px;
+
+            margin-top:
+                2px;
+        }
+
+        /* ==========================================
+           CARD
+        ========================================== */
+
+        .card {
+
+            width:
+                100%;
+
+            min-width:
+                0;
+
+            background:
+                rgba(255,255,255,.92);
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius:
+                21px;
+
+            padding:
+                22px;
+
+            box-shadow:
+                0 12px 35px
+                rgba(15,23,42,.06);
+        }
+
+        /* ==========================================
+           TWO COLUMN AREA
+        ========================================== */
+
+        .dashboard-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0,1fr)
+                );
+
+            gap:
+                18px;
+
+            width:
+                100%;
+        }
+
+        /* ==========================================
+           CAREER
+        ========================================== */
+
+        .career-box {
+
+            padding:
+                22px;
+
+            border-radius:
+                17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f5f3ff
+                );
+
+            border:
+                1px solid #c7d2fe;
+        }
+
+        .career-box-label {
+
+            color:
+                #6366f1;
+
+            font-size:
+                11px;
+
+            font-weight:
+                900;
+
+            text-transform:
+                uppercase;
+        }
+
+        .career-name {
+
+            margin-top:
+                9px;
+
+            font-size:
+                29px;
+
+            font-weight:
+                900;
+
+            color:
+                #312e81;
+
+            overflow-wrap:
+                anywhere;
+        }
+
+        .career-text {
+
+            margin-top:
+                9px;
+
+            color:
+                #64748b;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.7;
+        }
+
+        /* ==========================================
+           SKILLS
+        ========================================== */
+
+        .skill-list {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                13px;
+        }
+
+        .skill-row {
+
+            width:
+                100%;
+
+            min-width:
+                0;
+        }
+
+        .skill-row-top {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
+
+            margin-bottom:
+                6px;
+        }
+
+        .skill-row-name {
+
+            font-size:
+                13px;
+
+            font-weight:
+                800;
+
+            color:
+                #334155;
+        }
+
+        .skill-row-score {
+
+            color:
+                #4f46e5;
+
+            font-size:
+                12px;
+
+            font-weight:
+                900;
+
+            white-space:
+                nowrap;
+        }
+
+        .progress {
+
+            width:
+                100%;
+
+            height:
+                8px;
+
+            border-radius:
+                20px;
+
+            overflow:
+                hidden;
+
+            background:
+                #e2e8f0;
+        }
+
+        .progress-bar {
+
+            height:
+                100%;
+
+            border-radius:
+                20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #4f46e5,
+                    #8b5cf6
+                );
+        }
+
+        /* ==========================================
+           READINESS
+        ========================================== */
+
+        .readiness-big {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                20px;
+
+            margin-bottom:
+                20px;
+        }
+
+        .readiness-circle {
+
+            width:
+                100px;
+
+            height:
+                100px;
+
+            border-radius:
+                50%;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            background:
+                #eef2ff;
+
+            border:
+                8px solid
+                #c7d2fe;
+
+            flex-shrink:
+                0;
+        }
+
+        .readiness-circle strong {
+
+            color:
+                #4f46e5;
+
+            font-size:
+                21px;
+        }
+
+        .readiness-circle span {
+
+            color:
+                #64748b;
+
+            font-size:
+                9px;
+            }
+
+        .readiness-info h3 {
+
+            color:
+                #0f172a;
+
+            font-size:
+                17px;
+
+            margin-bottom:
+                5px;
+        }
+
+        .readiness-info p {
+
+            color:
+                #64748b;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.6;
+        }
+
+        .component-list {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0,1fr)
+                );
+
+            gap:
+                10px;
+        }
+
+        .component-box {
+
+            padding:
+                13px;
+
+            border-radius:
+                12px;
+
+            background:
+                #f8fafc;
+
+            border:
+                1px solid #e2e8f0;
+        }
+
+        .component-box span {
+
+            display:
+                block;
+
+            color:
+                #64748b;
+
+            font-size:
+                10px;
+
+            margin-bottom:
+                4px;
+        }
+
+        .component-box strong {
+
+            color:
+                #0f172a;
+
+            font-size:
+                15px;
+        }
+
+        /* ==========================================
+           INTERVIEW
+        ========================================== */
+
+        .interview-box {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                18px;
+
+            padding:
+                20px;
+
+            border-radius:
+                17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #312e81,
+                    #4f46e5 55%,
+                    #7c3aed
+                );
+
+            color:
+                white;
+        }
+
+        .interview-content h3 {
+
+            font-size:
+                18px;
+
+            margin-bottom:
+                6px;
+        }
+
+        .interview-content p {
+
+            color:
+                rgba(255,255,255,.80);
+
+            font-size:
+                12px;
+
+            line-height:
+                1.6;
+        }
+
+        .interview-score {
+
+            font-size:
+                30px;
+
+            font-weight:
+                900;
+
+            white-space:
+                nowrap;
+        }
+
+        .interview-btn {
+
+            display:
+                inline-block;
+
+            margin-top:
+                12px;
+
+            padding:
+                9px 13px;
+
+            border-radius:
+                10px;
+
+            background:
+                white;
+
+            color:
+                #4f46e5;
+
+            font-size:
+                11px;
+
+            font-weight:
+                900;
+        }
+
+        /* ==========================================
+           SKILL GAPS
+        ========================================== */
+
+        .gap-list {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                12px;
+        }
+
+        .gap-item {
+
+            padding:
+                15px;
+
+            border-radius:
+                14px;
+
+            background:
+                #f8fafc;
+
+            border:
+                1px solid #e2e8f0;
+        }
+
+        .gap-top {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            margin-bottom:
+                8px;
+        }
+
+        .gap-name {
+
+            color:
+                #0f172a;
+
+            font-size:
+                13px;
+
+            font-weight:
+                900;
+        }
+
+        .gap-value {
+
+            color:
+                #dc2626;
+
+            font-size:
+                11px;
+
+            font-weight:
+                900;
+        }
+
+        .gap-meta {
+
+            color:
+                #64748b;
+
+            font-size:
+                11px;
+        }
+
+        /* ==========================================
+           ROADMAP
+        ========================================== */
+
+        .roadmap {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                13px;
+        }
+
+        .roadmap-item {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                40px minmax(0,1fr);
+
+            gap:
+                12px;
+
+            min-width:
+                0;
+        }
+
+        .step {
+
+            width:
+                36px;
+
+            height:
+                36px;
+
+            border-radius:
+                11px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color:
+                white;
+
+            font-size:
+                12px;
+
+            font-weight:
+                900;
+        }
+
+        .roadmap-content {
+
+            min-width:
+                0;
+
+            padding:
+                15px;
+
+            border-radius:
+                14px;
+
+            border:
+                1px solid #e2e8f0;
+
+            background:
+                #ffffff;
+        }
+
+        .roadmap-content-top {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                flex-start;
+
+            gap:
+                12px;
+
+            flex-wrap:
+                wrap;
+        }
+
+        .roadmap-content h3 {
+
+            color:
+                #0f172a;
+
+            font-size:
+                14px;
+        }
+
+        .priority {
+
+            display:
+                inline-block;
+
+            padding:
+                5px 9px;
+
+            border-radius:
+                20px;
+
+            font-size:
+                9px;
+
+            font-weight:
+                900;
+
+            white-space:
+                nowrap;
+        }
+
+        .priority-high {
+
+            background:
+                #fee2e2;
+
+            color:
+                #b91c1c;
+        }
+
+        .priority-medium {
+
+            background:
+                #fef3c7;
+
+            color:
+                #92400e;
+        }
+
+        .priority-low {
+
+            background:
+                #dcfce7;
+
+            color:
+                #166534;
+        }
+
+        .roadmap-meta {
+
+            margin-top:
+                5px;
+
+            color:
+                #64748b;
+
+            font-size:
+                10px;
+        }
+
+        .topics {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                7px;
+
+            margin-top:
+                10px;
+        }
+
+        .topic {
+
+            padding:
+                6px 8px;
+
+            border-radius:
+                7px;
+
+            background:
+                #eef2ff;
+
+            color:
+                #4338ca;
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+        }
+
+        /* ==========================================
+           ACTIONS
+        ========================================== */
+
+        .action-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    minmax(0,1fr)
+                );
+
+            gap:
+                12px;
+        }
+
+        .action-card {
+
+            padding:
+                18px;
+
+            background:
+                white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius:
+                15px;
+        }
+
+        .action-icon {
+
+            font-size:
+                20px;
+        }
+
+        .action-card h3 {
+
+            margin:
+                9px 0 5px;
+
+            color:
+                #0f172a;
+
+            font-size:
+                14px;
+        }
+
+        .action-card p {
+
+            color:
+                #64748b;
+
+            font-size:
+                11px;
+
+            line-height:
+                1.6;
+        }
+
+        /* ==========================================
+           BUTTONS
+        ========================================== */
+
+        .primary-btn {
+
+            display:
+                inline-block;
+
+            margin-top:
+                14px;
+
+            padding:
+                11px 15px;
+
+            border-radius:
+                10px;
+
+            color:
+                white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            font-size:
+                11px;
+
+            font-weight:
+                900;
+        }
+
+        .secondary-btn {
+
+            display:
+                inline-block;
+
+            margin-top:
+                10px;
+
+            padding:
+                9px 12px;
+
+            border-radius:
+                9px;
+
+            background:
+                #eef2ff;
+
+            color:
+                #4338ca;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+        }
+
+        /* ==========================================
+           FOOTER
+        ========================================== */
+
+        footer {
+
+            text-align:
+                center;
+
+            padding:
+                24px;
+
+            color:
+                #94a3b8;
+
+            font-size:
+                11px;
+        }
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media(max-width:1050px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(0,1fr)
+                    );
+            }
+
+            .dashboard-grid {
+
+                grid-template-columns:
+                    minmax(0,1fr);
+            }
+
+            .action-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(0,1fr)
+                    );
+            }
+        }
+
+        @media(max-width:650px) {
+
+            .navbar {
+
+                padding:
+                    15px 4%;
+            }
+
+            .logo {
+
+                font-size:
+                    18px;
+            }
+
+            .nav-right {
+
+                gap:
+                    6px;
+            }
+
+            .nav-btn {
+
+                padding:
+                    8px 10px;
+
+                font-size:
+                    10px;
+            }
+
+            .container {
+
+                width:
+                    94%;
+
+                padding:
+                    28px 0 50px;
+            }
+
+            .stats-grid {
+
+                grid-template-columns:
+                    minmax(0,1fr);
+            }
+
+            .hero h1 {
+
+                font-size:
+                    34px;
+            }
+
+            .card {
+
+                padding:
+                    18px;
+            }
+
+            .readiness-big {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+            }
+
+            .component-list {
+
+                grid-template-columns:
+                    minmax(0,1fr);
+            }
+
+            .interview-box {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+            }
+
+            .action-grid {
+
+                grid-template-columns:
+                    minmax(0,1fr);
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==========================================
+         NAVBAR
+    ========================================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            🎯 AI <span>CareerPath</span>
+
+        </div>
+
+        <div class="nav-right">
+
+            <a
+                href="{% url 'result' assessment.id %}"
+                class="nav-btn"
+            >
+                📊 Full Report
+            </a>
+
+            <a
+                href="{% url 'profile' %}"
+                class="nav-btn"
+            >
+                ＋ New
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <main class="container">
+
+
+        <!-- ==========================================
+             HERO
+        ========================================== -->
+
+        <section class="hero">
+
+            <div class="badge">
+                ✨ CAREER DASHBOARD
+            </div>
+
+            <h1>
+
+                Welcome,
+
+                <span>
+                    {{ student.name|default:"Student" }}
+                </span>
+
+                👋
+
+            </h1>
+
+            <p>
+
+                Here is your complete AI CareerPath overview.
+                Track your skills, career direction, job readiness,
+                interview preparation and learning roadmap in one place.
+
+            </p>
+
+        </section>
+
+
+        <!-- ==========================================
+             STATS
+        ========================================== -->
+
+        <div class="stats-grid">
+
+
+            <!-- OVERALL -->
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Overall Technical Score
+                </div>
+
+                <div class="stat-value purple">
+
+                    {{ percentage|floatformat:1 }}%
+
+                </div>
+
+                <div class="stat-description">
+
+                    Based on assessed technical skills
+
+                </div>
+
+            </div>
+
+
+            <!-- CAREER -->
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Recommended Career
+                </div>
+
+                <div class="stat-value purple">
+
+                    {{ recommended_career|default:"Not Available" }}
+
+                </div>
+
+                <div class="stat-description">
+
+                    Your strongest career direction
+
+                </div>
+
+            </div>
+
+
+            <!-- JOB -->
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Job Readiness
+                </div>
+
+                <div class="stat-value green">
+
+                    {{ job_readiness.score|floatformat:1 }}%
+
+                </div>
+
+                <div class="stat-description">
+
+                    {{ job_readiness.status|default:"Not Assessed" }}
+
+                </div>
+
+            </div>
+
+
+            <!-- INTERVIEW -->
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Interview Preparation
+                </div>
+
+                <div class="stat-value">
+
+                    {% if interview_score is not None %}
+
+                        {{ interview_score|floatformat:1 }}%
+
+                    {% else %}
+
+                        —
+
+                    {% endif %}
+
+                </div>
+
+                <div class="stat-description">
+
+                    {% if interview_score is not None %}
+
+                        Interview assessment completed
+
+                    {% else %}
+
+                        Not assessed yet
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ==========================================
+             CAREER + SKILLS
+        ========================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <h2>
+                        Career Overview
+                    </h2>
+
+                    <p>
+                        Your current career direction and skills.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+
+                <!-- CAREER -->
+
+                <div class="card">
+
+                    <div class="career-box">
+
+                        <div class="career-box-label">
+                            AI RECOMMENDATION
+                        </div>
+
+                        <div class="career-name">
+
+                            {{ recommended_career|default:"Not Available" }}
+
+                        </div>
+
+                        <div class="career-text">
+
+                            {% if ai_advice.why_career %}
+
+                                {{ ai_advice.why_career }}
+
+                            {% else %}
+
+                                Your recommended career is based
+                                on your current assessed skills.
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="{% url 'result' assessment.id %}"
+                        class="primary-btn"
+                    >
+                        📊 View Full Career Report
+                    </a>
+
+                </div>
+
+
+                <!-- SKILLS -->
+
+                <div class="card">
+
+                    <div class="career-box-label">
+                        ASSESSED SKILLS
+                    </div>
+
+                    <div class="skill-list" style="margin-top:15px;">
+
+                        {% if skills %}
+
+                            {% for skill, score in skills.items %}
+
+                                <div class="skill-row">
+
+                                    <div class="skill-row-top">
+
+                                        <span class="skill-row-name">
+                                            {{ skill }}
+                                        </span>
+
+                                        <span class="skill-row-score">
+                                            {{ score|floatformat:1 }}/100
+                                        </span>
+
+                                    </div>
+
+                                    <div class="progress">
+
+                                        <div
+                                            class="progress-bar"
+                                            style="width:{{ score }}%;"
+                                        ></div>
+
+                                    </div>
+
+                                </div>
+
+                            {% endfor %}
+
+                        {% else %}
+
+                            <p style="color:#64748b;font-size:12px;">
+                                No assessed skills yet.
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             JOB READINESS
+        ========================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    💼
+                </div>
+
+                <div>
+
+                    <h2>
+                        Job Readiness
+                    </h2>
+
+                    <p>
+                        Your four placement-preparation areas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+
+                <div class="readiness-big">
+
+
+                    <div class="readiness-circle">
+
+                        <strong>
+                            {{ job_readiness.score|floatformat:1 }}%
+                        </strong>
+
+                        <span>
+                            READYNESS
+                        </span>
+
+                    </div>
+
+
+                    <div class="readiness-info">
+
+                        <h3>
+
+                            {{ job_readiness.status|default:"Not Assessed" }}
+
+                        </h3>
+
+                        <p>
+
+                            Coding Practice, Aptitude,
+                            CS Fundamentals and SQL / DBMS.
+
+                        </p>
+
+                        <a
+                            href="{% url 'job_readiness' assessment.id %}"
+                            class="secondary-btn"
+                        >
+
+                            📝 Update Job Readiness
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="component-list">
+
+
+                    <div class="component-box">
+
+                        <span>
+                            Coding Practice
+                        </span>
+
+                        <strong>
+                            {{ job_readiness.components.coding_practice|default:"—" }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="component-box">
+
+                        <span>
+                            Aptitude
+                        </span>
+
+                        <strong>
+                            {{ job_readiness.components.aptitude|default:"—" }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="component-box">
+
+                        <span>
+                            CS Fundamentals
+                        </span>
+
+                        <strong>
+                            {{ job_readiness.components.cs_fundamentals|default:"—" }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="component-box">
+
+                        <span>
+                            SQL / DBMS
+                        </span>
+
+                        <strong>
+                            {{ job_readiness.components.sql_dbms|default:"—" }}
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             INTERVIEW
+        ========================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    🎤
+                </div>
+
+                <div>
+
+                    <h2>
+                        Interview Preparation
+                    </h2>
+
+                    <p>
+                        Practice interview questions for your career.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="interview-box">
+
+
+                <div class="interview-content">
+
+                    <h3>
+
+                        {% if interview_score is not None %}
+
+                            Interview Test Completed
+
+                        {% else %}
+
+                            Test Your Interview Knowledge
+
+                        {% endif %}
+
+                    </h3>
+
+
+                    <p>
+
+                        {% if interview_score is not None %}
+
+                            Your interview assessment score is
+                            {{ interview_score|floatformat:1 }}%.
+
+                        {% else %}
+
+                            Complete your interview preparation
+                            assessment for {{ recommended_career }}.
+
+                        {% endif %}
+
+                    </p>
+
+
+                    <a
+                        href="{% url 'interview_preparation' assessment.id %}"
+                        class="interview-btn"
+                    >
+
+                        {% if interview_score is not None %}
+
+                            🔄 Retake Interview
+
+                        {% else %}
+
+                            🎤 Start Interview Preparation
+
+                        {% endif %}
+
+                    </a>
+
+                </div>
+
+
+                <div class="interview-score">
+
+                    {% if interview_score is not None %}
+
+                        {{ interview_score|floatformat:1 }}%
+
+                    {% else %}
+
+                        —
+
+                    {% endif %}
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             SKILL GAPS
+        ========================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    ⚠️
+                </div>
+
+                <div>
+
+                    <h2>
+                        Top Skill Gaps
+                    </h2>
+
+                    <p>
+                        Areas that need improvement.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                {% if skill_gaps %}
+
+                    <div class="gap-list">
+
+                        {% for skill, gap in skill_gaps.items %}
+
+                            {% if gap.gap > 0 %}
+
+                                <div class="gap-item">
+
+                                    <div class="gap-top">
+
+                                        <div class="gap-name">
+                                            {{ gap.skill }}
+                                        </div>
+
+                                        <div class="gap-value">
+
+                                            Gap:
+                                            {{ gap.gap|floatformat:1 }}
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="gap-meta">
+
+                                        Current:
+                                        {{ gap.current|floatformat:1 }}
+
+                                        &nbsp; → &nbsp;
+
+                                        Target:
+                                        {{ gap.required|floatformat:1 }}
+
+                                    </div>
+
+                                </div>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <p style="color:#64748b;font-size:12px;">
+                        No active skill gaps.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             ROADMAP
+        ========================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    🗺️
+                </div>
+
+                <div>
+
+                    <h2>
+                        Personalized Roadmap
+                    </h2>
+
+                    <p>
+                        Generated from your actual skill gaps.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+
+                {% if roadmap %}
+
+                    <div class="roadmap">
+
+                        {% for item in roadmap %}
+
+                            <div class="roadmap-item">
+
+
+                                <div class="step">
+
+                                    {{ forloop.counter }}
+
+                                </div>
+
+
+                                <div class="roadmap-content">
+
+
+                                    <div class="roadmap-content-top">
+
+                                        <div>
+
+                                            <h3>
+
+                                                {{ item.display_name }}
+
+                                            </h3>
+
+                                            <div class="roadmap-meta">
+
+                                                Current:
+                                                {{ item.current|floatformat:1 }}
+
+                                                →
+                                                Target:
+                                                {{ item.required|floatformat:1 }}
+
+                                                • Gap:
+                                                {{ item.gap|floatformat:1 }}
+
+                                            </div>
+
+                                        </div>
+
+
+                                        {% if item.priority == "HIGH" %}
+
+                                            <span class="priority priority-high">
+
+                                                🔴 HIGH PRIORITY
+
+                                            </span>
+
+                                        {% elif item.priority == "MEDIUM" %}
+
+                                            <span class="priority priority-medium">
+
+                                                🟡 MEDIUM PRIORITY
+
+                                            </span>
+
+                                        {% else %}
+
+                                            <span class="priority priority-low">
+
+                                                🟢 LOW PRIORITY
+
+                                            </span>
+
+                                        {% endif %}
+
+
+                                    </div>
+
+
+                                    {% if item.topics %}
+
+                                        <div class="topics">
+
+                                            {% for topic in item.topics %}
+
+                                                <span class="topic">
+
+                                                    {{ forloop.counter }}.
+                                                    {{ topic }}
+
+                                                </span>
+
+                                            {% endfor %}
+
+                                        </div>
+
+                                    {% endif %}
+
+
+                                </div>
+
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <p style="color:#64748b;font-size:12px;">
+
+                        🎉 No active roadmap items.
+
+                    </p>
+
+                {% endif %}
+
+
+                <a
+                    href="{% url 'result' assessment.id %}"
+                    class="secondary-btn"
+                >
+
+                    📊 Open Full Roadmap
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             QUICK ACTIONS
+        ========================================== -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <div class="section-icon">
+                    🚀
+                </div>
+
+                <div>
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                    <p>
+                        Continue improving your profile.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="action-grid">
+
+
+                <div class="action-card">
+
+                    <div class="action-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        Reassess Skills
+                    </h3>
+
+                    <p>
+                        Take another technical assessment
+                        and track your progress.
+                    </p>
+
+                    <a
+                        href="{% url 'assessment' %}"
+                        class="secondary-btn"
+                    >
+                        Start
+                    </a>
+
+                </div>
+
+
+                <div class="action-card">
+
+                    <div class="action-icon">
+                        💼
+                    </div>
+
+                    <h3>
+                        Job Readiness
+                    </h3>
+
+                    <p>
+                        Improve your placement preparation
+                        score.
+                    </p>
+
+                    <a
+                        href="{% url 'job_readiness' assessment.id %}"
+                        class="secondary-btn"
+                    >
+                        Practice
+                    </a>
+
+                </div>
+
+
+                <div class="action-card">
+
+                    <div class="action-icon">
+                        🎤
+                    </div>
+
+                    <h3>
+                        Interview
+                    </h3>
+
+                    <p>
+                        Test your interview knowledge
+                        for your recommended career.
+                    </p>
+
+                    <a
+                        href="{% url 'interview_preparation' assessment.id %}"
+                        class="secondary-btn"
+                    >
+                        Practice
+                    </a>
+
+                </div>
+
+
+                <div class="action-card">
+
+                    <div class="action-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        Full Report
+                    </h3>
+
+                    <p>
+                        View your complete AI CareerPath
+                        career intelligence report.
+                    </p>
+
+                    <a
+                        href="{% url 'result' assessment.id %}"
+                        class="secondary-btn"
+                    >
+                        View
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             FINAL CTA
+        ========================================== -->
+
+        <section class="section">
+
+            <div
+                class="card"
+                style="
+                    text-align:center;
+                    background:
+                        linear-gradient(
+                            135deg,
+                            #eef2ff,
+                            #f5f3ff
+                        );
+                    border-color:#c7d2fe;
+                "
+            >
+
+                <h2 style="
+                    color:#0f172a;
+                    margin-bottom:8px;
+                ">
+
+                    🚀 Keep Building Your Career
+
+                </h2>
+
+                <p style="
+                    color:#64748b;
+                    font-size:13px;
+                    line-height:1.7;
+                ">
+
+                    Improve your skill gaps,
+                    strengthen your projects,
+                    prepare for interviews
+                    and keep your profile ready for placements.
+
+                </p>
+
+
+                <a
+                    href="{% url 'result' assessment.id %}"
+                    class="primary-btn"
+                >
+
+                    📊 View My Complete Career Report
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        🎯 AI CareerPath • Discover your potential 🚀
+
+    </footer>
+
+
+</body>
+
+</html>

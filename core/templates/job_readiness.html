@@ -1,0 +1,678 @@
+<form method="POST" class="readiness-form">
+
+    {% csrf_token %}
+
+    {% if form.fields %}
+
+        {% for field in form %}
+
+            <div class="question-card">
+
+                <!-- QUESTION HEADER -->
+                <div class="question-header">
+
+                    <div class="question-number">
+                        {{ forloop.counter }}
+                    </div>
+
+                    <div class="question-content">
+
+                        <span class="question-label">
+                            QUESTION {{ forloop.counter }}
+                        </span>
+
+                        <h3>
+                            {{ field.label }}
+                        </h3>
+
+                        <span class="question-tag">
+                            💼 JOB READINESS
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OPTIONS -->
+                <div class="question-options">
+
+                    {% for choice in field.field.choices %}
+
+                        <div class="option">
+
+                            <input
+                                type="radio"
+                                name="{{ field.html_name }}"
+                                value="{{ choice.0 }}"
+                                id="{{ field.auto_id }}_{{ forloop.counter }}"
+                                required
+                            >
+
+                            <label
+                                for="{{ field.auto_id }}_{{ forloop.counter }}"
+                            >
+
+                                <span class="radio-circle"></span>
+
+                                <span class="option-letter">
+                                    {{ forloop.counter }}
+                                </span>
+
+                                <span class="option-text">
+                                    {{ choice.1 }}
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- FIELD ERROR -->
+                {% if field.errors %}
+
+                    <div class="error">
+                        ⚠️ {{ field.errors }}
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        {% endfor %}
+
+
+        <!-- SUBMIT AREA -->
+        <div class="submit-area">
+
+            <div class="submit-text">
+
+                <div class="submit-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <strong>
+                        Ready to calculate your score?
+                    </strong>
+
+                    <span>
+                        Answer every question before submitting.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+
+                <span>
+                    🚀
+                </span>
+
+                Calculate My Job Readiness
+
+            </button>
+
+        </div>
+
+
+    {% else %}
+
+        <!-- NO QUESTIONS -->
+        <div class="no-questions">
+
+            <div class="no-questions-icon">
+                ⚠️
+            </div>
+
+            <h2>
+                No Questions Available
+            </h2>
+
+            <p>
+                No job-readiness questions are currently
+                configured for this career.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</form>
+
+
+<style>
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.readiness-form {
+    width: 100%;
+    display: grid;
+    gap: 20px;
+}
+
+
+/* =========================================================
+   QUESTION CARD
+========================================================= */
+
+.question-card {
+    width: 100%;
+    background: rgba(255,255,255,.94);
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: 0 12px 35px rgba(15,23,42,.06);
+    transition: .2s ease;
+}
+
+.question-card:hover {
+    transform: translateY(-2px);
+    border-color: #c7d2fe;
+    box-shadow: 0 16px 40px rgba(79,70,229,.10);
+}
+
+
+/* =========================================================
+   QUESTION HEADER
+========================================================= */
+
+.question-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.question-number {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #7c3aed
+        );
+
+    color: white;
+    font-size: 15px;
+    font-weight: 900;
+
+    box-shadow:
+        0 8px 20px
+        rgba(79,70,229,.22);
+}
+
+.question-content {
+    flex: 1;
+}
+
+.question-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #94a3b8;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .8px;
+}
+
+.question-content h3 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 800;
+}
+
+.question-tag {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 5px 10px;
+    border-radius: 20px;
+
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+
+    color: #4f46e5;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   OPTIONS
+========================================================= */
+
+.question-options {
+    display: grid;
+    gap: 10px;
+}
+
+.option {
+    position: relative;
+}
+
+
+/* Hide original radio */
+
+.option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   OPTION LABEL
+========================================================= */
+
+.option label {
+    width: 100%;
+    min-height: 57px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 15px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    color: #475569;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    transition: .18s ease;
+}
+
+.option label:hover {
+    background: #eef2ff;
+    border-color: #a5b4fc;
+    color: #312e81;
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   RADIO CIRCLE
+========================================================= */
+
+.radio-circle {
+    width: 21px;
+    height: 21px;
+    flex-shrink: 0;
+
+    border: 2px solid #cbd5e1;
+
+    border-radius: 50%;
+
+    background: white;
+
+    transition: .18s ease;
+}
+
+
+/* =========================================================
+   OPTION NUMBER
+========================================================= */
+
+.option-letter {
+    width: 27px;
+    height: 27px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #e0e7ff;
+    color: #4338ca;
+
+    font-size: 11px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   OPTION TEXT
+========================================================= */
+
+.option-text {
+    flex: 1;
+}
+
+
+/* =========================================================
+   SELECTED OPTION
+========================================================= */
+
+.option input:checked + label {
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f5f3ff
+        );
+
+    border-color: #818cf8;
+
+    color: #312e81;
+
+    box-shadow:
+        0 6px 18px
+        rgba(79,70,229,.10);
+}
+
+.option input:checked + label .radio-circle {
+
+    border-color: #4f46e5;
+
+    background: #4f46e5;
+
+    box-shadow:
+        inset 0 0 0 5px white;
+}
+
+.option input:checked + label .option-letter {
+
+    background: #4f46e5;
+    color: white;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.error {
+    margin-top: 12px;
+
+    padding: 11px 14px;
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    border-radius: 11px;
+
+    color: #b91c1c;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   NO QUESTIONS
+========================================================= */
+
+.no-questions {
+
+    text-align: center;
+
+    padding: 55px 25px;
+
+    background:
+        rgba(255,255,255,.92);
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(15,23,42,.06);
+}
+
+.no-questions-icon {
+
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: #eef2ff;
+
+    font-size: 30px;
+}
+
+.no-questions h2 {
+
+    color: #0f172a;
+
+    font-size: 21px;
+
+    margin-bottom: 8px;
+}
+
+.no-questions p {
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   SUBMIT AREA
+========================================================= */
+
+.submit-area {
+
+    position: sticky;
+
+    bottom: 15px;
+
+    z-index: 50;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 17px 20px;
+
+    background:
+        rgba(255,255,255,.95);
+
+    backdrop-filter: blur(18px);
+
+    border:
+        1px solid #c7d2fe;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(15,23,42,.12);
+}
+
+
+/* =========================================================
+   SUBMIT TEXT
+========================================================= */
+
+.submit-text {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.submit-icon {
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #eef2ff;
+
+    font-size: 20px;
+}
+
+.submit-text strong {
+
+    display: block;
+
+    color: #0f172a;
+
+    font-size: 14px;
+}
+
+.submit-text span {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.submit-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    border: none;
+
+    padding: 14px 22px;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #7c3aed
+        );
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 9px 22px
+        rgba(79,70,229,.22);
+
+    transition: .2s ease;
+}
+
+.submit-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 13px 28px
+        rgba(79,70,229,.30);
+}
+
+.submit-btn:active {
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:700px) {
+
+    .question-card {
+        padding: 18px;
+    }
+
+    .question-content h3 {
+        font-size: 14px;
+    }
+
+    .option label {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .submit-area {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .submit-text {
+
+        align-items: flex-start;
+    }
+
+    .submit-btn {
+
+        width: 100%;
+    }
+}
+
+</style>
